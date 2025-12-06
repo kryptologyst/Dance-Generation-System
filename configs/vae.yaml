@@ -1,0 +1,52 @@
+# VAE model configuration
+
+model:
+  model_type: "vae"
+  input_size: 10
+  output_size: 10
+  hidden_units: 256
+  num_layers: 3
+  dropout: 0.1
+  sequence_length: 50
+  latent_dim: 32
+
+data:
+  dataset_name: "synthetic"
+  data_path: "data/"
+  batch_size: 64
+  num_workers: 4
+  sequence_length: 50
+  feature_dim: 10
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+
+training:
+  epochs: 300
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 64
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1
+  precision: "16-mixed"
+  devices: 1
+  accelerator: "auto"
+  deterministic: true
+  seed: 42
+
+evaluation:
+  metrics: ["mse", "mae", "diversity"]
+  save_samples: true
+  num_samples: 100
+  sample_frequency: 10
+
+project_root: "."
+assets_dir: "assets"
+checkpoints_dir: "assets/checkpoints"
+samples_dir: "assets/samples"
+logs_dir: "assets/logs"
+
+log_level: "INFO"
+log_to_file: true
+log_to_wandb: false
+wandb_project: "dance-generation"
